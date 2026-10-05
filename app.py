@@ -1,14 +1,18 @@
 from flask import Flask, render_template, request, redirect, url_for, session, flash
+import os
 import sqlite3
 import joblib
+from pathlib import Path
 from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
-app.secret_key = "placement-predictor-secret-key"
+app.secret_key = os.environ.get("SECRET_KEY", "placement-predictor-secret-key")
 
-model = joblib.load("placement_model.pkl")
+BASE_DIR = Path(__file__).resolve().parent
+MODEL_PATH = BASE_DIR / "placement_model.pkl"
+DATABASE = BASE_DIR / "placement.db"
 
-DATABASE = "placement.db"
+model = joblib.load(MODEL_PATH)
 
 
 def get_db():
