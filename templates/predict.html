@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="card">
+
+        <h1>Placement Prediction</h1>
+
+        <p>Enter student information to get an ML prediction.</p>
+
+        <form method="POST">
+
+            <label>CGPA</label>
+
+            <input
+                type="number"
+                name="cgpa"
+                step="0.1"
+                min="0"
+                max="10"
+                required
+            >
+
+
+            <label>Number of Internships</label>
+
+            <input
+                type="number"
+                name="internships"
+                min="0"
+                required
+            >
+
+
+            <label>Number of Projects</label>
+
+            <input
+                type="number"
+                name="projects"
+                min="0"
+                required
+            >
+
+
+            <label>Aptitude Score</label>
+
+            <input
+                type="number"
+                name="aptitude_score"
+                min="0"
+                max="100"
+                required
+            >
+
+
+            <label>Communication Score</label>
+
+            <input
+                type="number"
+                name="communication_score"
+                min="0"
+                max="100"
+                required
+            >
+
+
+            <button type="submit">
+                Predict Placement
+            </button>
+
+        </form>
+
+
+        {% if prediction %}
+
+        <div class="result">
+
+            Prediction: {{ prediction }}
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+{% endblock %}

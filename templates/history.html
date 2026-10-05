@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="card">
+
+        <h1>Prediction History</h1>
+
+        {% if predictions %}
+
+        <table>
+
+            <tr>
+                <th>CGPA</th>
+                <th>Internships</th>
+                <th>Projects</th>
+                <th>Aptitude</th>
+                <th>Communication</th>
+                <th>Result</th>
+            </tr>
+
+            {% for p in predictions %}
+
+            <tr>
+                <td>{{ p["cgpa"] }}</td>
+                <td>{{ p["internships"] }}</td>
+                <td>{{ p["projects"] }}</td>
+                <td>{{ p["aptitude_score"] }}</td>
+                <td>{{ p["communication_score"] }}</td>
+                <td>{{ p["result"] }}</td>
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+        {% else %}
+
+        <p>No prediction history available.</p>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+{% endblock %}
